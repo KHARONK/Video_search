@@ -43,7 +43,7 @@
    }, 2000);
   }
 
-// Process the results when they are returned from the recogniser
+  // Process the results when they are returned from the recogniser
   rec.onresult = function(e) {
    // Check each result starting from the last one
    for (var i = e.resultIndex; i < e.results.length; ++i) {
@@ -67,6 +67,10 @@
               video.play();
               highlightCommand('vidPlay');
              }
+          else if (userSaid(str, 'play Next')) {
+        nextVideo.play();
+        highlightCommand('vidPlayNext');
+       }
           //Go to the next video
           else if (userSaid(str, 'next')) {
         video_count++;
@@ -78,11 +82,14 @@
        }
              // Stop the video
              else if (userSaid(str, 'stop')) {
-             
-        var nextVideo = document.getElementById("sec-video");
-        nextVideo.pause();
         video.pause();
               highlightCommand('vidStop');
+             }
+
+else if (userSaid(str, 'stop Next')) {
+        // var nextVideo = document.getElementById("sec-video");
+        nextVideo.pause();
+              highlightCommand('vidStopNext');
              }
              // If the user said 'volume' then parse it even further
              else if (userSaid(str, 'volume')) {
@@ -94,22 +101,40 @@
                else video.volume += 0.1;
                highlightCommand('vidVolInc');
               }
+           if (userSaid(str, 'increase Next')) {
+         if (vol >= 0.9) nextVideo.volume = 1;
+         else nextVideo.volume += 0.1;
+         highlightCommand('vidVolIncNext');
+        }
               // Decrease the volume
               else if (userSaid(str, 'decrease')) {
                if (vol <= 0.1) video.volume = 0;
                else video.volume -= 0.1;
                highlightCommand('vidVolDec');
               }
+           else if (userSaid(str, 'decrease Next')) {
+         if (vol <= 0.1) nextVideo.volume = 0;
+         else nextVideo.volume -= 0.1;
+         highlightCommand('vidVolDecNext');
+        }
               // Turn the volume off (mute)
               else if (userSaid(str, 'of')) {
                video.muted = true;
                highlightCommand('vidVolOff');
               }
+           else if (userSaid(str, 'of Next')) {
+         nextVideo.muted = true;
+         highlightCommand('vidVolOffNext');
+        }
               // Turn the volume on (unmute)
               else if (userSaid(str, 'on')) {
                video.muted = false;
                highlightCommand('vidVolOn');
               }
+           else if (userSaid(str, 'on Next')) {
+         nextVideo.muted = false;
+         highlightCommand('vidVolOnNext');
+        }
              }
             }
            }
