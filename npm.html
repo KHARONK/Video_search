@@ -6,7 +6,7 @@
 
 	<script type="text/javascript">
 		
-		var docx = nlp("Jack Ryan is a CIA Analyst in New York");
+		var docx = nlp("I am a student at NMHU");
 		console.log(docx.data());
 		// Sentences
 		console.log(docx.sentences().data());
@@ -45,7 +45,7 @@
 		console.log(docx.nouns().text());
 		console.log(docx.verbs().data());
 
-		var docx2 = nlp("book");
+		var docx2 = nlp("student");
 		console.log(docx2.nouns().toLowerCase().text());
 		console.log(docx2.nouns().toUpperCase().text());
 		console.log(docx2.nouns().toPlural().text());
@@ -66,11 +66,11 @@
         var Sentiment = require('sentiment');
 var sentiment = new Sentiment();
 
-var docx = sentiment.analyze("I like apples");
+var docx = sentiment.analyze("I like NMHU");
 console.log(docx);
 
 // Applying to An Array
-var mydocx = ["I love apples","I don't eat pepper","the movie was very nice","this book is the best"]
+var mydocx = ["I love NMHU","They love arts"]
 
 mydocx.forEach(function(s){
 	console.log(sentiment.analyze(s));
